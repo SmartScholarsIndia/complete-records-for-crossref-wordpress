@@ -1,0 +1,22 @@
+/* Complete Records for Crossref — admin screens. Uses WordPress's own admin colours and type. */
+.ccrwp .ccrwp-missing { background: #fcf9e8; border-left: 4px solid #dba617; padding: 8px 12px; max-width: 60em; }
+.ccrwp-state { display: inline-block; padding: 2px 8px; border-radius: 3px; font-weight: 600; background: #f0f0f1; color: #1d2327; }
+.ccrwp-state.ccrwp-ok { background: #edfaef; color: #00450c; }
+.ccrwp-state.ccrwp-warn, .ccrwp-state.ccrwp-wait { background: #fcf9e8; color: #614a00; }
+.ccrwp-state.ccrwp-bad { background: #fcf0f1; color: #8a2424; }
+.ccrwp-state.ccrwp-none { background: #f0f0f1; color: #3c434a; }
+p.ccrwp-state { display: block; max-width: 70em; padding: 8px 12px; }
+.ccrwp-bad { color: #8a2424; }
+.ccrwp-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #646970; }
+.ccrwp-facts li.ccrwp-lacks { color: #614a00; }
+.ccrwp-inline { display: inline-block; margin-right: 6px; }
+.ccrwp-xml { background: #f6f7f7; border: 1px solid #dcdcde; padding: 12px; max-height: 32em; overflow: auto; white-space: pre-wrap; word-break: break-word; font-size: 12px; }
+.ccrwp-records td, .ccrwp-deposits td { vertical-align: top; }
+.ccrwp-box .ccrwp-authors input { width: 100%; }
+.ccrwp-box .ccrwp-authors th:last-child { width: 4.5em; }
+.ccrwp-box .ccrwp-row label { margin-right: 1em; white-space: nowrap; }
+@media (max-width: 782px) {
+    .ccrwp-box .ccrwp-authors, .ccrwp-box .ccrwp-authors tbody, .ccrwp-box .ccrwp-authors tr, .ccrwp-box .ccrwp-authors td { display: block; width: 100%; }
+    .ccrwp-box .ccrwp-authors thead { display: none; }
+    .ccrwp-box .ccrwp-authors tr { border-bottom: 1px solid #dcdcde; padding: 6px 0; }
+}

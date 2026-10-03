@@ -1,0 +1,27 @@
+# Every push and pull request: the plugin in a real WordPress (7.1.2, on SQLite), against a stand-in for Crossref, with
+# the screens driven in Chromium. The screenshots are kept with the run.
+name: tests
+on: [push, pull_request]
+jobs:
+  wordpress:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.3', extensions: 'dom, libxml, mbstring, curl, sqlite3, pdo_sqlite, zip, sodium' }
+      - uses: actions/setup-python@v6
+        with: { python-version: '3.12' }
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - run: git clone -q --depth 1 --branch 7.1.2 https://github.com/WordPress/WordPress.git /tmp/wordpress
+      - run: git clone -q --depth 1 --branch v3.0.2 https://github.com/WordPress/sqlite-database-integration.git /tmp/sqlite
+      - run: bash tests/schema_copies.sh /tmp/crossref-schema-copies
+      - run: bash tests/run_tests.sh
+        env:
+          WP_SRC: /tmp/wordpress
+          SQLITE_SRC: /tmp/sqlite/packages/plugin-sqlite-database-integration
+          CR_SCHEMA_CACHE: /tmp/crossref-schema-copies
+          SHOTS: /tmp/screens
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: screens, path: /tmp/screens }
+      - run: php tools/build.php --zip
